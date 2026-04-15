@@ -102,16 +102,17 @@ npm run dev
 ```
 
 ## 🔐 Rotas principais
+
 Auth
-POST /api/register
-POST /api/login
+-POST /api/register
+-POST /api/login
 ---
 
 Produtos
-GET /api/products
-POST /api/products
-PUT /api/products/:id
-DELETE /api/products/:id
+-GET /api/products
+-POST /api/products
+-PUT /api/products/:id
+-DELETE /api/products/:id
 ---
 
 Usuário
@@ -129,6 +130,7 @@ DELETE /api/admin/users/:id
 ---
 
 ## 🔥 Diferenciais
+
 Arquitetura organizada (Controller → Service → Model)
 Validação com Joi
 Autenticação com JWT
