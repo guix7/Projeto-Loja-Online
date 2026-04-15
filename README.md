@@ -101,30 +101,34 @@ npm run dev
 
 ```
 
-🔐 Rotas principais
+## 🔐 Rotas principais
 Auth
 POST /api/register
 POST /api/login
+---
 
 Produtos
 GET /api/products
 POST /api/products
 PUT /api/products/:id
 DELETE /api/products/:id
+---
 
 Usuário
 GET /api/users/me
 PATCH /api/users/me
 PATCH /api/users/me/senha
 DELETE /api/users/me
+---
 
 Admin
 GET /api/admin/users
 GET /api/admin/users/:id
 PATCH /api/admin/users/:id
 DELETE /api/admin/users/:id
+---
 
-🔥 Diferenciais
+## 🔥 Diferenciais
 Arquitetura organizada (Controller → Service → Model)
 Validação com Joi
 Autenticação com JWT
@@ -132,11 +136,13 @@ Controle de permissões (admin/user)
 Paginação e filtros avançados
 Segurança com Helmet e Rate Limit
 📈 Status do projeto
+---
 
 🚧 Front-end em desenvolvimento
 ✅ Back-end funcional
+---
 
-👨‍💻 Autor
+## 👨‍💻 Autor
 
 Guilherme Oliveira
 💻 Desenvolvedor Full Stack em formação
