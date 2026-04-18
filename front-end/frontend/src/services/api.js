@@ -60,3 +60,23 @@ export async function getProducts(){
 
     return result;
 }
+
+export async function postProduct(formData){
+    const token = localStorage.getItem("token");
+
+    const response = await fetch(`${BASE_URL}/api/products`, {
+        method: "POST",
+        headers: {
+            Authorization: `Bearer ${token}`
+        },
+        body: formData
+    })
+
+    const result = await response.json();
+
+    if(!response.ok){
+        throw new Error(result.message || "Erro ao criar Produto")
+    }
+
+    return result;
+}

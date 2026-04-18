@@ -18,6 +18,11 @@ function Navbar(){
                     Home
                 </Link>
 
+                <Link to='/create-product' className="hover:text-gray-300 transition"
+                >
+                    Cadastrar Produto
+                </Link>
+                
                 <Link 
                     to='/login' 
                     className="hover:text-gray-300 transition"
