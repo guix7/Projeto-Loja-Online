@@ -1,4 +1,4 @@
-import {Routes, Route} from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 
 import Register from "./pages/Register.jsx";
 import Login from "./pages/Login.jsx"
@@ -7,10 +7,14 @@ import CreateProduct from './pages/CreateProduct.jsx';
 import Navbar from './components/Navbar.jsx';
 
 function App(){
-  return(
-    <div className='p-6'>
-    <Navbar />
+  const location = useLocation();
 
+  // Define as rotas onde a Navbar NÃO deve ser exibida
+  const pathsWithoutNavbar = ["/login", "/register"];
+
+  return(
+    <div >
+      {!pathsWithoutNavbar.includes(location.pathname) && <Navbar />}
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<Login />} />
