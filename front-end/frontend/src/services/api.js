@@ -65,3 +65,23 @@ export async function postProduct(formData) {
 
   return result;
 }
+
+
+export async function forgotPasswordRequest(data) {
+  const response = await fetch(`${BASE_URL}/api/forgot-password`, { // Ajuste a URL da sua API
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  });
+
+  const responseData = await response.json();
+
+  if (!response.ok) {
+    throw new Error(responseData.message || 'Falha ao enviar e-mail de recuperação.');
+  }
+
+  return responseData;
+}
+

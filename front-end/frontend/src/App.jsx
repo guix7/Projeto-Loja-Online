@@ -5,12 +5,13 @@ import Login from "./pages/Login.jsx"
 import Home from "./pages/Home.jsx";
 import CreateProduct from './pages/CreateProduct.jsx';
 import Navbar from './components/Navbar.jsx';
+import ForgotPassword from './pages/ForgotPassword.jsx';
 
 function App(){
   const location = useLocation();
 
   // Define as rotas onde a Navbar NÃO deve ser exibida
-  const pathsWithoutNavbar = ["/login", "/register"];
+  const pathsWithoutNavbar = ["/login", "/register", "/forgot-password"];
 
   return(
     <div >
@@ -20,6 +21,7 @@ function App(){
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register/>} />
         <Route path='/create-product' element={<CreateProduct/>}/>
+        <Route path='/forgot-password' element={<ForgotPassword/>}/>
       </Routes>   
   
     </div>
