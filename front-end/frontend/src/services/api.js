@@ -1,82 +1,67 @@
 const BASE_URL = "http://localhost:3000";
 
-export async function registerUser(data){
-    const response = await fetch(`${BASE_URL}/api/register`, {
-        method: "POST",
-        headers: {
-            "content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-    });
+export async function registerUser(data) {
+  const response = await fetch(`${BASE_URL}/api/register`, {
+    method: "POST",
+    headers: {
+      "content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+    credentials: "include",
+  });
 
-    const result = await response.json();
-
-    if(!result){
-        throw new Error(result.message || "Erro ao cadastrar");
-    }
-
-    return result;
+  return await response.json();
 }
 
-export async function loginUser(data){
-    const response = await fetch(`${BASE_URL}/api/login`, {
-        method: "POST",
-        headers: {
-            "content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-    });
+export async function loginUser(data) {
+  const response = await fetch(`${BASE_URL}/api/login`, {
+    method: "POST",
+    headers: {
+      "content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+    credentials: "include",
+  });
 
-    const result = await response.json();
+  const result = await response.json();
 
-    if(!response.ok){
-        throw new Error(result.message || "Erro ao fazer Login");
-    }
+  if (!response.ok) {
+    throw new Error(result.message || "Erro ao fazer Login");
+  }
 
-    return result;
+  return result;
 }
 
-export async function getProducts(){
-    const token = localStorage.getItem("token");
+export async function getProducts() {
+  const response = await fetch("http://localhost:3000/api/products", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+  });
 
-    if(!token){
-        throw new Error("Usuário não autenticado")
-    }
+  const result = await response.json();
 
-    const response = await fetch("http://localhost:3000/api/products", {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-        },
+  if (!response.ok) {
+    throw new Error(result.message || "Erro ao buscar produtos");
+  }
 
-    })
-
-    const result = await response.json();
-
-    if(!response.ok){
-        throw new Error(result.message || "Erro ao buscar produtos");
-    }
-
-    return result;
+  return result;
 }
 
-export async function postProduct(formData){
-    const token = localStorage.getItem("token");
+export async function postProduct(formData) {
+  const response = await fetch(`${BASE_URL}/api/products`, {
+    method: "POST",
+    credentials: "include",
+    body: formData,
+  });
 
-    const response = await fetch(`${BASE_URL}/api/products`, {
-        method: "POST",
-        headers: {
-            Authorization: `Bearer ${token}`
-        },
-        body: formData
-    })
+  const result = await response.json();
 
-    const result = await response.json();
+  if (!response.ok) {
+    throw new Error(result.message || "Erro ao criar Produto");
+  }
 
-    if(!response.ok){
-        throw new Error(result.message || "Erro ao criar Produto")
-    }
-
-    return result;
+  return result;
 }
