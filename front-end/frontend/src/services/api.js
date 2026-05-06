@@ -68,20 +68,44 @@ export async function postProduct(formData) {
 
 
 export async function forgotPasswordRequest(data) {
-  const response = await fetch(`${BASE_URL}/api/forgot-password`, { // Ajuste a URL da sua API
+  try {
+    console.log(JSON.stringify(data))
+    const response = await fetch(`${BASE_URL}/api/forgot-password`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+
+    // Se o backend não responder (servidor desligado), ele trava aqui.
+    const responseData = await response.json();
+
+    if (!response.ok) {
+      throw new Error(responseData.message || 'Erro no servidor');
+    }
+
+    return responseData;
+  } catch (error) {
+    console.error("Erro detalhado no fetch:", error); // Adicione isso para ver o erro real
+    throw error;
+  }
+}
+
+export async function resetPasswordConfirm(data) {
+  const response = await fetch(`${BASE_URL}/api/reset-password`, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json',
+      'Content-Type': "application/json",
     },
     body: JSON.stringify(data),
   });
 
-  const responseData = await response.json();
+  const result = await response.json();
 
-  if (!response.ok) {
-    throw new Error(responseData.message || 'Falha ao enviar e-mail de recuperação.');
+  if(!response.ok){
+    throw new Error(result.message || 'Erro ao definir a senha');
   }
 
-  return responseData;
+  return result
 }
-
